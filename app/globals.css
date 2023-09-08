@@ -11,3 +11,33 @@ body,
 :root {
   width: 100%;
 }
+
+.linear-loader {
+  display: block;
+  width: 100%;
+  height: 4px; /* Adjust the height as needed */
+  background-color: #4285f4; /* Google's loading bar color */
+  position: relative;
+  animation: loading 2s linear infinite, shrink-and-grow 3s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes shrink-and-grow {
+  0%{
+    width: 50%;
+  }
+  50%{
+    width: 100%;
+  }
+  100%{
+    width: 50%;
+  }
+}

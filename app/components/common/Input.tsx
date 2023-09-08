@@ -2,19 +2,16 @@
 
 import clsx from "clsx";
 
-import {
-  FieldValues,
-  UseFormRegister,
-  FieldErrors,
-} from "react-hook-form";
+import { FieldValues, UseFormRegister, FieldErrors } from "react-hook-form";
 
 interface InputProps {
-  label: string;
+  label?: string;
   id: string;
   type?: string;
-  required?: boolean;
+  placeholder?: string;
+  required?: boolean | string;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  errors: FieldErrors<FieldValues>;
   disabled?: boolean;
 }
 
@@ -22,10 +19,11 @@ const Input: React.FC<InputProps> = ({
   label,
   id,
   type,
-  required,
+  required = false,
   register,
   errors,
   disabled,
+  placeholder,
 }) => {
   return (
     <div>
@@ -36,11 +34,12 @@ const Input: React.FC<InputProps> = ({
       >
         {label}
       </label>
-      <div className="mt-2">
+      <div className="mt-2 w-full">
         <input
           id={id}
           type={type}
           autoComplete="off"
+          placeholder={placeholder ?? ""}
           disabled={disabled}
           {...register(id, { required })}
           className={clsx(
@@ -48,18 +47,20 @@ const Input: React.FC<InputProps> = ({
           form-input
           block 
           w-full 
-          rounded-md
-          border-0
-          py-1.5 text-gray-900
+          rounded-sm
+          border
+          px-4
+          py-4 text-gray-900
           shadow-sm
-          ring-1
           ring-inset
           ring-gray-300
-          placeholder:text-gray-400
+          border-light-gray
+          placeholder:text-secondary
           focus:ring-2
-          focus:ring-sky-600
-          sm:text-sm
+          focus:ring-blue
+          sm:text-base
           sm:leading-6
+          outline-none
         `,
             errors[id] && "focus:ring-rose-500",
             disabled && "opacity-50 cursor-default"

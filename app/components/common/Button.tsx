@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
         `
         flex
         justify-center
-        rounded-md
+        rounded-[4px]
         px-3
         py-2
         font-semibold
@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
           "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
         !secondary &&
           !danger &&
-          "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
+          "bg-blue text-[#fff] hover:bg-blue-hover focus-visible:outline-sky-600"
       )}
     >
       {children}
